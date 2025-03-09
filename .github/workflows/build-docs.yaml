@@ -38,7 +38,6 @@ jobs:
       run: |
         touch docs/build/html/.nojekyll  # Create an empty .nojekyll file in the build directory
   
-
     - name: Deploy to GitHub Pages
       uses: JamesIves/github-pages-deploy-action@v4
       with:
