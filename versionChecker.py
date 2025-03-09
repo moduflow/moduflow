@@ -75,7 +75,7 @@ def increment_version(version: str) -> str:
 def update_version_files(new_version: str) -> None:
     """Update version in all necessary files."""
     # Update in __init__.py
-    init_file = "moduflow/moduflow/__init__.py"
+    init_file = "moduflow/__init__.py"
     try:
         with open(init_file, "r") as f:
             content = f.read()
