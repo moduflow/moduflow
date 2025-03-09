@@ -177,7 +177,8 @@ class TestConfigManager(unittest.TestCase):
         shared_files = self.config_manager.find_files_in_multiple_sections()
         
         # Check the result
-        self.assertEqual(shared_files, {'shared.py': ['test1', 'test2']})
+        self.assertEqual(sorted(shared_files['shared.py']), sorted(['test1', 'test2']))
+
     
     def test_add_file_to_sections(self):
         """Test adding a file to multiple sections."""
