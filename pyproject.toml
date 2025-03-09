@@ -27,14 +27,13 @@ dependencies = [
     "pyyaml>=6.0",
     "click>=8.0.0",
 ]
+requires-python = ">=3.7"  # Ensure this is inside the `[project]` section
 
 [project.optional-dependencies]
 docs = [
     "sphinx>=5.0.0",
     "sphinx-rtd-theme",
 ]
-
-requires-python = ">=3.7"
 
 [project.scripts]
 moduflow = "moduflow.cli.main:cli"

@@ -17,7 +17,7 @@ from typing import Tuple, Optional
 def get_local_version() -> str:
     """Extract version from the package's __init__.py file."""
     try:
-        init_file = "moduflow/moduflow/__init__.py"
+        init_file = "moduflow/__init__.py"
         
         with open(init_file, "r") as f:
             content = f.read()
