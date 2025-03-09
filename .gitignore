@@ -43,3 +43,4 @@ Thumbs.db
 # ModuFlow specific directories
 .compiled_sections/
 .moduflow/
+docs/build/html/

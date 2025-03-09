@@ -1,5 +1,7 @@
 # ModuFlow
 
+[![Documentation Status](https://img.shields.io/badge/docs-gh--pages-blue)](https://moduflow.github.io/moduflow/)
+
 A command-line tool for modular development with Test-Driven Development (TDD) support.
 
 ## Overview
@@ -118,6 +120,9 @@ files:
 5. Implement each module using TDD
 6. Use `compile-section` to verify that each module works independently
 7. Use `compile-project` for final integration
+
+## Documentation
+Check out our [documentation](https://moduflow.github.io/moduflow/).
 
 ## License
 
