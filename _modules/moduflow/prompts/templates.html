@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>moduflow.prompts.templates &#8212; ModuFlow 0.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/alabaster.css?v=12dfc556" />
+    <script src="../../../_static/documentation_options.js?v=01f34227"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for moduflow.prompts.templates</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Prompt templates for ModuFlow.</span>
+
+<span class="sd">This module provides templates for generating AI development prompts.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">List</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">moduflow.core.config</span><span class="w"> </span><span class="kn">import</span> <span class="n">ConfigManager</span>
+
+
+<div class="viewcode-block" id="PromptGenerator">
+<a class="viewcode-back" href="../../../modules/prompts.html#moduflow.prompts.templates.PromptGenerator">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">PromptGenerator</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Generator for AI development prompts.&quot;&quot;&quot;</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">project_root</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize the prompt generator.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            project_root: Path to the project root. If None, uses current directory.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">project_root</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">project_root</span> <span class="ow">or</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">config_manager</span> <span class="o">=</span> <span class="n">ConfigManager</span><span class="p">(</span><span class="n">project_root</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">design_dir</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">project_root</span> <span class="o">/</span> <span class="s1">&#39;design&#39;</span>
+    
+<div class="viewcode-block" id="PromptGenerator.generate_prompt">
+<a class="viewcode-back" href="../../../modules/prompts.html#moduflow.prompts.templates.PromptGenerator.generate_prompt">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">generate_prompt</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Generate an AI development prompt based on the project configuration.</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            The generated prompt.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">prompt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_base_prompt</span><span class="p">()</span>
+        
+        <span class="c1"># Add section details</span>
+        <span class="n">sections</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config_manager</span><span class="o">.</span><span class="n">read_all_section_configs</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">sections</span><span class="p">:</span>
+            <span class="n">prompt</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">## Section Details</span><span class="se">\n</span><span class="s2">&quot;</span>
+            
+            <span class="k">for</span> <span class="n">section_name</span><span class="p">,</span> <span class="n">section_config</span> <span class="ow">in</span> <span class="n">sections</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">prompt</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">### </span><span class="si">{</span><span class="n">section_name</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+                
+                <span class="k">if</span> <span class="n">section_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;description&#39;</span><span class="p">):</span>
+                    <span class="n">prompt</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">section_config</span><span class="p">[</span><span class="s1">&#39;description&#39;</span><span class="p">]</span><span class="si">}</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+                
+                <span class="c1"># Check if there&#39;s a design document</span>
+                <span class="n">design_file</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">design_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">section_name</span><span class="si">}</span><span class="s2">.md&quot;</span>
+                <span class="k">if</span> <span class="n">design_file</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">design_file</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                            <span class="n">design_content</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+                        <span class="n">prompt</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;**Design Document:**</span><span class="se">\n\n</span><span class="s2">```markdown</span><span class="se">\n</span><span class="si">{</span><span class="n">design_content</span><span class="si">}</span><span class="se">\n</span><span class="s2">```</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+                    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                        <span class="n">prompt</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;*Error reading design file: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">*</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+                
+                <span class="n">prompt</span> <span class="o">+=</span> <span class="s2">&quot;**Files in this section:**</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+                <span class="k">for</span> <span class="n">file_path</span> <span class="ow">in</span> <span class="n">section_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;files&#39;</span><span class="p">,</span> <span class="p">[]):</span>
+                    <span class="n">file_exists</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">project_root</span> <span class="o">/</span> <span class="n">file_path</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span>
+                    <span class="n">status</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span> <span class="k">if</span> <span class="n">file_exists</span> <span class="k">else</span> <span class="s2">&quot; (missing)&quot;</span>
+                    <span class="n">prompt</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;- `</span><span class="si">{</span><span class="n">file_path</span><span class="si">}</span><span class="s2">`</span><span class="si">{</span><span class="n">status</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+                
+                <span class="n">prompt</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+        
+        <span class="c1"># Add shared files info</span>
+        <span class="n">shared_files</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config_manager</span><span class="o">.</span><span class="n">find_files_in_multiple_sections</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">shared_files</span><span class="p">:</span>
+            <span class="n">prompt</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">## Files Used By Multiple Sections</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="n">prompt</span> <span class="o">+=</span> <span class="s2">&quot;These files are used by multiple sections and should be handled with care:</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+            
+            <span class="k">for</span> <span class="n">file_path</span><span class="p">,</span> <span class="n">section_names</span> <span class="ow">in</span> <span class="n">shared_files</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">sections_str</span> <span class="o">=</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">section_names</span><span class="p">)</span>
+                <span class="n">prompt</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;- `</span><span class="si">{</span><span class="n">file_path</span><span class="si">}</span><span class="s2">` (used by: </span><span class="si">{</span><span class="n">sections_str</span><span class="si">}</span><span class="s2">)</span><span class="se">\n</span><span class="s2">&quot;</span>
+        
+        <span class="c1"># Add final instructions</span>
+        <span class="n">prompt</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_closing_instructions</span><span class="p">()</span>
+        
+        <span class="k">return</span> <span class="n">prompt</span></div>
+
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_base_prompt</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the base prompt template.</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            The base prompt template.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2"># Section-Based Development Prompt</span>
+
+<span class="s2">## Project Overview</span>
+<span class="s2">You are tasked with implementing a section-based development approach for this project. The project is divided into logical sections, each containing related files. Your goal is to develop these sections using Test-Driven Development (TDD).</span>
+
+<span class="s2">## Development Guidelines</span>
+
+<span class="s2">1. **Test-Driven Development (TDD)**:</span>
+<span class="s2">   - Write tests before implementing functionality</span>
+<span class="s2">   - Tests should be comprehensive and cover edge cases</span>
+<span class="s2">   - Each section should have its own test suite</span>
+
+<span class="s2">2. **Section Isolation**:</span>
+<span class="s2">   - Each section should be as independent as possible</span>
+<span class="s2">   - Shared code should be minimized and clearly documented</span>
+<span class="s2">   - When a section depends on another section, document this dependency</span>
+
+<span class="s2">3. **File Organization**:</span>
+<span class="s2">   - Group files by section</span>
+<span class="s2">   - Use consistent naming conventions</span>
+<span class="s2">   - Add new files to the appropriate section in the configuration</span>
+
+<span class="s2">4. **Implementation Process**:</span>
+<span class="s2">   - Review the design document for the section</span>
+<span class="s2">   - Implement tests according to the requirements</span>
+<span class="s2">   - Implement the functionality to pass the tests</span>
+<span class="s2">   - Document any design decisions or trade-offs</span>
+<span class="s2">   - Update the section configuration if new files are created</span>
+<span class="s2">&quot;&quot;&quot;</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_closing_instructions</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the closing instructions for the prompt.</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            The closing instructions.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">## Deliverables</span>
+
+<span class="s2">For each section you work on, you should provide:</span>
+
+<span class="s2">1. Test files implementing the requirements</span>
+<span class="s2">2. Implementation files that pass the tests</span>
+<span class="s2">3. Documentation of design decisions and usage instructions</span>
+<span class="s2">4. Any updates to the section configuration</span>
+
+<span class="s2">## Additional Notes</span>
+
+<span class="s2">- The project uses YAML files to track which files belong to which sections</span>
+<span class="s2">- The output directory `.compiled_sections` contains compiled versions of each section</span>
+<span class="s2">- Follow the existing code style and conventions</span>
+<span class="s2">- If you create new files, add them to the appropriate section configuration</span>
+<span class="s2">- Use the ModuFlow tool to manage sections and compilation</span>
+<span class="s2">&quot;&quot;&quot;</span></div>
+
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../index.html">ModuFlow</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage.html">ModuFlow Usage Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/index.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../development.html">ModuFlow Development Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../testing.html">Testing ModuFlow</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2025, Brian Onang'o.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.4.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

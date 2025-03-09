@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>ModuFlow Development Guide &#8212; ModuFlow 0.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=12dfc556" />
+    <script src="_static/documentation_options.js?v=01f34227"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Testing ModuFlow" href="testing.html" />
+    <link rel="prev" title="Utils Module" href="modules/utils.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="moduflow-development-guide">
+<h1>ModuFlow Development Guide<a class="headerlink" href="#moduflow-development-guide" title="Link to this heading">¶</a></h1>
+<p>This document provides information for developers who want to contribute to ModuFlow.</p>
+<section id="project-structure">
+<h2>Project Structure<a class="headerlink" href="#project-structure" title="Link to this heading">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>moduflow/
+├── moduflow/                # Main package directory
+│   ├── __init__.py          # Package initialization
+│   ├── __main__.py          # Entry point for running as module
+│   ├── cli/                 # CLI section
+│   │   ├── __init__.py      # CLI package initialization
+│   │   ├── main.py          # CLI entry point
+│   │   └── commands.py      # CLI commands implementation
+│   ├── core/                # Core functionality section
+│   │   ├── __init__.py      # Core package initialization 
+│   │   ├── config.py        # Configuration handling
+│   │   ├── paths.py         # Path management
+│   │   └── exceptions.py    # Custom exceptions
+│   ├── handlers/            # File and operations handlers section
+│   │   ├── __init__.py      # Handlers package initialization
+│   │   ├── yaml_handler.py  # YAML file handling
+│   │   ├── file_handler.py  # File operations
+│   │   └── section_handler.py # Section management
+│   ├── compilers/           # Compilation section
+│   │   ├── __init__.py      # Compilers package initialization
+│   │   ├── section.py       # Section compilation
+│   │   └── project.py       # Project compilation
+│   ├── prompts/             # AI prompts section
+│   │   ├── __init__.py      # Prompts package initialization
+│   │   └── templates.py     # Prompt templates
+│   └── utils/               # Utilities section
+│       ├── __init__.py      # Utils package initialization
+│       └── helpers.py       # Helper functions
+├── tests/                   # Test directory
+├── docs/                    # Documentation directory
+└── ...                      # Other project files
+</pre></div>
+</div>
+</section>
+<section id="development-setup">
+<h2>Development Setup<a class="headerlink" href="#development-setup" title="Link to this heading">¶</a></h2>
+<ol class="arabic">
+<li><p>Clone the repository:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/moduflow/moduflow.git
+<span class="nb">cd</span><span class="w"> </span>moduflow
+</pre></div>
+</div>
+</li>
+<li><p>Create a virtual environment:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv
+<span class="nb">source</span><span class="w"> </span>venv/bin/activate<span class="w">  </span><span class="c1"># On Windows: venv\Scripts\activate</span>
+</pre></div>
+</div>
+</li>
+<li><p>Install development dependencies:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;.[dev]&quot;</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="branch-strategy">
+<h2>Branch Strategy<a class="headerlink" href="#branch-strategy" title="Link to this heading">¶</a></h2>
+<p>The project uses a branch-based development workflow:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">master</span></code> - Main stable branch</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cli</span></code> - Branch for CLI development</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">core</span></code> - Branch for core functionality</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">handlers</span></code> - Branch for file and section handlers</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">compilers</span></code> - Branch for compilation functionality</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">prompts</span></code> - Branch for AI prompt generation</p></li>
+</ol>
+<p>When working on a feature:</p>
+<ol class="arabic simple">
+<li><p>Create a branch from <code class="docutils literal notranslate"><span class="pre">master</span></code> or the appropriate section branch</p></li>
+<li><p>Implement and test your changes</p></li>
+<li><p>Create a pull request targeting the appropriate section branch</p></li>
+<li><p>After review, the section branch will be merged into <code class="docutils literal notranslate"><span class="pre">master</span></code></p></li>
+</ol>
+</section>
+<section id="testing">
+<h2>Testing<a class="headerlink" href="#testing" title="Link to this heading">¶</a></h2>
+<p>Run the tests with pytest:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pytest
+</pre></div>
+</div>
+<p>Add new tests in the <code class="docutils literal notranslate"><span class="pre">tests/</span></code> directory, following the same structure as the main package.</p>
+</section>
+<section id="code-style">
+<h2>Code Style<a class="headerlink" href="#code-style" title="Link to this heading">¶</a></h2>
+<p>This project follows PEP 8 style guidelines with a few exceptions. We use:</p>
+<ul class="simple">
+<li><p>Black for code formatting</p></li>
+<li><p>isort for import sorting</p></li>
+<li><p>flake8 for linting</p></li>
+</ul>
+<p>You can run these tools with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>black<span class="w"> </span>moduflow<span class="w"> </span>tests
+isort<span class="w"> </span>moduflow<span class="w"> </span>tests
+flake8<span class="w"> </span>moduflow<span class="w"> </span>tests
+</pre></div>
+</div>
+</section>
+<section id="documentation">
+<h2>Documentation<a class="headerlink" href="#documentation" title="Link to this heading">¶</a></h2>
+<p>Documentation is written in Markdown and stored in the <code class="docutils literal notranslate"><span class="pre">docs/</span></code> directory.</p>
+<p>To build the documentation:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>docs
+mkdocs<span class="w"> </span>build
+</pre></div>
+</div>
+<p>To serve the documentation locally:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>docs
+mkdocs<span class="w"> </span>serve
+</pre></div>
+</div>
+</section>
+<section id="release-process">
+<h2>Release Process<a class="headerlink" href="#release-process" title="Link to this heading">¶</a></h2>
+<ol class="arabic">
+<li><p>Update version in:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">setup.cfg</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">moduflow/__init__.py</span></code></p></li>
+</ul>
+</li>
+<li><p>Update the CHANGELOG.md</p></li>
+<li><p>Create a release commit:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>commit<span class="w"> </span>-am<span class="w"> </span><span class="s2">&quot;Release vX.Y.Z&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Tag the release:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>tag<span class="w"> </span>vX.Y.Z
+</pre></div>
+</div>
+</li>
+<li><p>Push to GitHub:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>master<span class="w"> </span>--tags
+</pre></div>
+</div>
+</li>
+<li><p>Build and upload to PyPI:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>build
+python<span class="w"> </span>-m<span class="w"> </span>twine<span class="w"> </span>upload<span class="w"> </span>dist/*
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="adding-new-commands">
+<h2>Adding New Commands<a class="headerlink" href="#adding-new-commands" title="Link to this heading">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Create a new command function in <code class="docutils literal notranslate"><span class="pre">moduflow/cli/commands.py</span></code></p></li>
+<li><p>Add the command to the CLI group in <code class="docutils literal notranslate"><span class="pre">moduflow/cli/main.py</span></code></p></li>
+<li><p>Add tests for the command in <code class="docutils literal notranslate"><span class="pre">tests/test_cli.py</span></code></p></li>
+<li><p>Update the documentation in <code class="docutils literal notranslate"><span class="pre">docs/usage.md</span></code></p></li>
+</ol>
+</section>
+<section id="working-with-sections">
+<h2>Working with Sections<a class="headerlink" href="#working-with-sections" title="Link to this heading">¶</a></h2>
+<p>Sections are the core concept of ModuFlow. When adding functionality related to sections:</p>
+<ol class="arabic simple">
+<li><p>Consider which component it belongs to (core, handlers, compilers, etc.)</p></li>
+<li><p>Add appropriate tests</p></li>
+<li><p>Update documentation</p></li>
+</ol>
+</section>
+<section id="contributing">
+<h2>Contributing<a class="headerlink" href="#contributing" title="Link to this heading">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Fork the repository</p></li>
+<li><p>Create your feature branch</p></li>
+<li><p>Commit your changes</p></li>
+<li><p>Push to the branch</p></li>
+<li><p>Create a Pull Request</p></li>
+</ol>
+<p>Please make sure your code passes all tests and follows the style guidelines.</p>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">ModuFlow</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">ModuFlow Usage Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/index.html">API Reference</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">ModuFlow Development Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#project-structure">Project Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#development-setup">Development Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#branch-strategy">Branch Strategy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#testing">Testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#code-style">Code Style</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#documentation">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#release-process">Release Process</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#adding-new-commands">Adding New Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#working-with-sections">Working with Sections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#contributing">Contributing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html">Testing ModuFlow</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="modules/utils.html" title="previous chapter">Utils Module</a></li>
+      <li>Next: <a href="testing.html" title="next chapter">Testing ModuFlow</a></li>
+  </ul></li>
+</ul>
+</div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2025, Brian Onang'o.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.4.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="_sources/development.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
