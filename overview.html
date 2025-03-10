@@ -1,0 +1,392 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Overview &mdash; ModuFlow 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=01f34227"></script>
+      <script src="_static/doctools.js?v=9a2dae69"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installation" href="installation.html" />
+    <link rel="prev" title="Welcome to ModuFlow’s documentation!" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            ModuFlow
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#the-problem-moduflow-solves">The Problem ModuFlow Solves</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#design-first-approach">Design-First Approach</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#sequence-diagrams">Sequence Diagrams</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#class-diagrams">Class Diagrams</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ai-driven-module-definition">AI-Driven Module Definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#development-workflow">Development Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-focused-ai-development">Module-Focused AI Development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-independence-and-integration">Module Independence and Integration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#development-installation">Development Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#requirements">Requirements</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">ModuFlow Usage Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="usage.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usage.html#getting-started">Getting Started</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="usage.html#initializing-a-project">Initializing a Project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usage.html#creating-modules">Creating Modules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usage.html#adding-files-to-modules">Adding Files to Modules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usage.html#adding-a-file-to-multiple-modules">Adding a File to Multiple Modules</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="usage.html#working-with-modules">Working with Modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="usage.html#listing-modules">Listing Modules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usage.html#analyzing-the-project-structure">Analyzing the Project Structure</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="usage.html#compilation">Compilation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="usage.html#compiling-a-module">Compiling a Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usage.html#compiling-all-modules">Compiling All Modules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usage.html#compiling-the-entire-project">Compiling the Entire Project</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="usage.html#configuration-management">Configuration Management</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="usage.html#compiling-configuration-files">Compiling Configuration Files</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="usage.html#working-with-ai-development">Working with AI Development</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="usage.html#getting-the-development-prompt">Getting the Development Prompt</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="usage.html#examples">Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="usage.html#creating-a-web-application-with-modules">Creating a Web Application with Modules</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="usage.html#advanced-usage">Advanced Usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="usage.html#using-environment-variables">Using Environment Variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usage.html#custom-yaml-structure">Custom YAML Structure</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="usage.html#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="usage.html#common-issues">Common Issues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usage.html#getting-help">Getting Help</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules/index.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="modules/cli.html">CLI Module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="modules/cli.html#commands">Commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules/cli.html#module-moduflow.cli.main">Main</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="modules/core.html">Core Module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="modules/core.html#module-moduflow.core.config">Config</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="modules/core.html#moduflow.core.config.ConfigManager"><code class="docutils literal notranslate"><span class="pre">ConfigManager</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="modules/core.html#module-moduflow.core.exceptions">Exceptions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="modules/core.html#moduflow.core.exceptions.CompilationError"><code class="docutils literal notranslate"><span class="pre">CompilationError</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/core.html#moduflow.core.exceptions.ConfigError"><code class="docutils literal notranslate"><span class="pre">ConfigError</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/core.html#moduflow.core.exceptions.FileError"><code class="docutils literal notranslate"><span class="pre">FileError</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/core.html#moduflow.core.exceptions.ModuFlowError"><code class="docutils literal notranslate"><span class="pre">ModuFlowError</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/core.html#moduflow.core.exceptions.SectionError"><code class="docutils literal notranslate"><span class="pre">SectionError</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/core.html#moduflow.core.exceptions.SectionNotFoundError"><code class="docutils literal notranslate"><span class="pre">SectionNotFoundError</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="modules/core.html#module-moduflow.core.paths">Paths</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="modules/core.html#moduflow.core.paths.PathManager"><code class="docutils literal notranslate"><span class="pre">PathManager</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="modules/compilers.html">Compilers Module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="modules/compilers.html#project-compiler">Project Compiler</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="modules/compilers.html#moduflow.compilers.project.ProjectCompiler"><code class="docutils literal notranslate"><span class="pre">ProjectCompiler</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="modules/compilers.html#section-compiler">Section Compiler</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="modules/compilers.html#moduflow.compilers.section.SectionCompiler"><code class="docutils literal notranslate"><span class="pre">SectionCompiler</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="modules/handlers.html">Handlers Module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="modules/handlers.html#file-handler">File Handler</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="modules/handlers.html#moduflow.handlers.file_handler.FileHandler"><code class="docutils literal notranslate"><span class="pre">FileHandler</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="modules/handlers.html#section-handler">Section Handler</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="modules/handlers.html#moduflow.handlers.section_handler.SectionHandler"><code class="docutils literal notranslate"><span class="pre">SectionHandler</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="modules/handlers.html#yaml-handler">YAML Handler</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="modules/handlers.html#moduflow.handlers.yaml_handler.YamlHandler"><code class="docutils literal notranslate"><span class="pre">YamlHandler</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="modules/prompts.html">Prompts Module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="modules/prompts.html#templates">Templates</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="modules/prompts.html#moduflow.prompts.templates.PromptGenerator"><code class="docutils literal notranslate"><span class="pre">PromptGenerator</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="modules/utils.html">Utils Module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="modules/utils.html#module-moduflow.utils.helpers">Helpers</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="modules/utils.html#moduflow.utils.helpers.camel_to_snake"><code class="docutils literal notranslate"><span class="pre">camel_to_snake()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/utils.html#moduflow.utils.helpers.find_project_root"><code class="docutils literal notranslate"><span class="pre">find_project_root()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/utils.html#moduflow.utils.helpers.get_terminal_width"><code class="docutils literal notranslate"><span class="pre">get_terminal_width()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/utils.html#moduflow.utils.helpers.is_path_within"><code class="docutils literal notranslate"><span class="pre">is_path_within()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/utils.html#moduflow.utils.helpers.list_python_modules"><code class="docutils literal notranslate"><span class="pre">list_python_modules()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/utils.html#moduflow.utils.helpers.normalize_path"><code class="docutils literal notranslate"><span class="pre">normalize_path()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/utils.html#moduflow.utils.helpers.run_command"><code class="docutils literal notranslate"><span class="pre">run_command()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/utils.html#moduflow.utils.helpers.snake_to_camel"><code class="docutils literal notranslate"><span class="pre">snake_to_camel()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="development.html">ModuFlow Development Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="development.html#project-structure">Project Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="development.html#development-setup">Development Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="development.html#branch-strategy">Branch Strategy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="development.html#testing">Testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="development.html#code-style">Code Style</a></li>
+<li class="toctree-l2"><a class="reference internal" href="development.html#documentation">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="development.html#release-process">Release Process</a></li>
+<li class="toctree-l2"><a class="reference internal" href="development.html#adding-new-commands">Adding New Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="development.html#working-with-sections">Working with Sections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="development.html#contributing">Contributing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html">Testing ModuFlow</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="testing.html#running-tests">Running Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="testing.html#test-structure">Test Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="testing.html#writing-tests">Writing Tests</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="testing.html#example-test-structure">Example Test Structure</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="testing.html#integration-with-ci-cd">Integration with CI/CD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="testing.html#adding-more-tests">Adding More Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="testing.html#test-coverage">Test Coverage</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ModuFlow</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Overview</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/overview.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="overview">
+<h1>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h1>
+<p>ModuFlow is a command-line tool designed to facilitate modular development with a focus on AI-assisted workflows. This document provides an in-depth overview of ModuFlow’s core concepts, workflow, and how it integrates with AI-driven development.</p>
+<section id="the-problem-moduflow-solves">
+<h2>The Problem ModuFlow Solves<a class="headerlink" href="#the-problem-moduflow-solves" title="Link to this heading"></a></h2>
+<p>When working with AI assistants to develop software:</p>
+<ol class="arabic simple">
+<li><p><strong>Context Window Limitations</strong>: AI models have limited context windows, making it difficult to work with entire codebases at once</p></li>
+<li><p><strong>Project Organization</strong>: Maintaining clear boundaries between components becomes challenging as projects grow</p></li>
+<li><p><strong>Development Continuity</strong>: Tracking progress across multiple AI sessions requires structured approaches</p></li>
+</ol>
+<p>ModuFlow addresses these challenges by providing a structured way to divide your project into manageable modules that can be developed independently.</p>
+</section>
+<section id="design-first-approach">
+<h2>Design-First Approach<a class="headerlink" href="#design-first-approach" title="Link to this heading"></a></h2>
+<p>ModuFlow encourages a design-first approach, where system architecture is defined before implementation begins. The design files (stored in the <code class="docutils literal notranslate"><span class="pre">design/</span></code> directory) can include:</p>
+<section id="sequence-diagrams">
+<h3>Sequence Diagrams<a class="headerlink" href="#sequence-diagrams" title="Link to this heading"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>┌─────┐          ┌─────────┐          ┌───────────┐
+│User │          │AuthModule│          │UserService│
+└──┬──┘          └────┬────┘          └─────┬─────┘
+   │    login()       │                     │
+   │ ───────────────&gt; │                     │
+   │                  │   validateUser()    │
+   │                  │ ──────────────────&gt; │
+   │                  │                     │
+   │                  │ ◀─────────────────  │
+   │                  │    user object      │
+   │ ◀───────────────┐│                     │
+   │   auth token     │                     │
+┌──┴──┐          ┌────┴────┐          ┌─────┴─────┐
+│User │          │AuthModule│          │UserService│
+└─────┘          └─────────┘          └───────────┘
+</pre></div>
+</div>
+</section>
+<section id="class-diagrams">
+<h3>Class Diagrams<a class="headerlink" href="#class-diagrams" title="Link to this heading"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>┌───────────────────┐      ┌────────────────────┐
+│ User               │      │ AuthService        │
+├───────────────────┤      ├────────────────────┤
+│ - id: UUID         │      │ - tokenStore: Dict │
+│ - username: String │      ├────────────────────┤
+│ - email: String    │◄─────│ + login()          │
+│ - passwordHash: Str│      │ + logout()         │
+├───────────────────┤      │ + register()        │
+│ + validatePwd()    │      │ + resetPassword()  │
+└───────────────────┘      └────────────────────┘
+</pre></div>
+</div>
+</section>
+</section>
+<section id="ai-driven-module-definition">
+<h2>AI-Driven Module Definition<a class="headerlink" href="#ai-driven-module-definition" title="Link to this heading"></a></h2>
+<p>One of ModuFlow’s key features is facilitating AI-driven project structuring. After sharing your design with an AI assistant, you can ask it to suggest a modular structure for your project.</p>
+<p>The AI will analyze your requirements and design to produce module definitions like:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">users</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">User authentication, registration, and profile management</span>
+<span class="nt">files</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">users/__init__.py</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">users/models.py</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">users/views.py</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">users/forms.py</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">users/serializers.py</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">users/settings.py</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">users/tests/__init__.py</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">users/tests/test_models.py</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">users/tests/test_views.py</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">users/README.md</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.env</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">requirements.txt</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">docker-compose.yml</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Dockerfile</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">common/__init__.py</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">common/utils.py</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">common/mixins.py</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">static/css/main.css</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">static/js/app.js</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">templates/base.html</span>
+</pre></div>
+</div>
+<p>These module definitions can then be imported into ModuFlow using:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>moduflow<span class="w"> </span>import-section<span class="w"> </span>users.yaml
+</pre></div>
+</div>
+</section>
+<section id="development-workflow">
+<h2>Development Workflow<a class="headerlink" href="#development-workflow" title="Link to this heading"></a></h2>
+<p>With ModuFlow, your development workflow becomes:</p>
+<ol class="arabic simple">
+<li><p><strong>Design</strong>: Create system diagrams and architecture documents</p></li>
+<li><p><strong>Module Definition</strong>: Have an AI assistant suggest module breakdown based on your design</p></li>
+<li><p><strong>Module Creation</strong>: Import the AI-suggested modules into ModuFlow</p></li>
+<li><p><strong>Implementation</strong>: Develop each module separately, often in dedicated branches</p></li>
+<li><p><strong>Testing</strong>: Use TDD to ensure each module works correctly in isolation</p></li>
+<li><p><strong>Integration</strong>: Compile all modules together and test the integrated system</p></li>
+</ol>
+</section>
+<section id="module-focused-ai-development">
+<h2>Module-Focused AI Development<a class="headerlink" href="#module-focused-ai-development" title="Link to this heading"></a></h2>
+<p>When working with an AI assistant on a specific module, you can generate a focused prompt:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>moduflow<span class="w"> </span>get-prompt<span class="w"> </span>users<span class="w"> </span>--output<span class="w"> </span>users_prompt.md
+</pre></div>
+</div>
+<p>This produces a prompt containing:</p>
+<ul class="simple">
+<li><p>The module description and file structure</p></li>
+<li><p>Design documents relevant to this module</p></li>
+<li><p>Test requirements for the module</p></li>
+<li><p>Dependencies on other modules</p></li>
+</ul>
+<p>You can then share this prompt with an AI assistant to receive more focused and accurate code generation.</p>
+</section>
+<section id="module-independence-and-integration">
+<h2>Module Independence and Integration<a class="headerlink" href="#module-independence-and-integration" title="Link to this heading"></a></h2>
+<p>ModuFlow helps maintain the balance between module independence and system integration:</p>
+<ul class="simple">
+<li><p><strong>Independent Development</strong>: Each module can be developed and tested separately</p></li>
+<li><p><strong>Shared Resources</strong>: Common files can be assigned to multiple modules</p></li>
+<li><p><strong>Compilation</strong>: Modules can be compiled individually or together</p></li>
+<li><p><strong>Dependency Management</strong>: ModuFlow tracks inter-module dependencies</p></li>
+</ul>
+<p>This approach ensures that modules can be developed in parallel while still maintaining a cohesive system architecture.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to ModuFlow’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="installation.html" class="btn btn-neutral float-right" title="Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Brian Onang&#39;o.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

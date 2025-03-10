@@ -1,34 +1,234 @@
+
+
 <!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>moduflow.handlers.yaml_handler &mdash; ModuFlow 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
 
-<html lang="en" data-content_root="../../../">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>moduflow.handlers.yaml_handler &#8212; ModuFlow 0.1.0 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=5ecbeea2" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/alabaster.css?v=12dfc556" />
-    <script src="../../../_static/documentation_options.js?v=01f34227"></script>
-    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
-    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=01f34227"></script>
+      <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
-    <link rel="search" title="Search" href="../../../search.html" />
-   
-  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
-  
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
 
-  
-  
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
 
-  </head><body>
-  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
           
+          
+          <a href="../../../index.html" class="icon icon-home">
+            ModuFlow
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview.html">Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../overview.html#the-problem-moduflow-solves">The Problem ModuFlow Solves</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../overview.html#design-first-approach">Design-First Approach</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../overview.html#sequence-diagrams">Sequence Diagrams</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../overview.html#class-diagrams">Class Diagrams</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../overview.html#ai-driven-module-definition">AI-Driven Module Definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../overview.html#development-workflow">Development Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../overview.html#module-focused-ai-development">Module-Focused AI Development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../overview.html#module-independence-and-integration">Module Independence and Integration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#development-installation">Development Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#requirements">Requirements</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage.html">ModuFlow Usage Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../usage.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../usage.html#getting-started">Getting Started</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../usage.html#initializing-a-project">Initializing a Project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../usage.html#creating-modules">Creating Modules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../usage.html#adding-files-to-modules">Adding Files to Modules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../usage.html#adding-a-file-to-multiple-modules">Adding a File to Multiple Modules</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../usage.html#working-with-modules">Working with Modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../usage.html#listing-modules">Listing Modules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../usage.html#analyzing-the-project-structure">Analyzing the Project Structure</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../usage.html#compilation">Compilation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../usage.html#compiling-a-module">Compiling a Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../usage.html#compiling-all-modules">Compiling All Modules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../usage.html#compiling-the-entire-project">Compiling the Entire Project</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../usage.html#configuration-management">Configuration Management</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../usage.html#compiling-configuration-files">Compiling Configuration Files</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../usage.html#working-with-ai-development">Working with AI Development</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../usage.html#getting-the-development-prompt">Getting the Development Prompt</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../usage.html#examples">Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../usage.html#creating-a-web-application-with-modules">Creating a Web Application with Modules</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../usage.html#advanced-usage">Advanced Usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../usage.html#using-environment-variables">Using Environment Variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../usage.html#custom-yaml-structure">Custom YAML Structure</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../usage.html#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../usage.html#common-issues">Common Issues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../usage.html#getting-help">Getting Help</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/index.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../modules/cli.html">CLI Module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../modules/cli.html#commands">Commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../modules/cli.html#module-moduflow.cli.main">Main</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../modules/core.html">Core Module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../modules/core.html#module-moduflow.core.config">Config</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../modules/core.html#moduflow.core.config.ConfigManager"><code class="docutils literal notranslate"><span class="pre">ConfigManager</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../modules/core.html#module-moduflow.core.exceptions">Exceptions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../modules/core.html#moduflow.core.exceptions.CompilationError"><code class="docutils literal notranslate"><span class="pre">CompilationError</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../modules/core.html#moduflow.core.exceptions.ConfigError"><code class="docutils literal notranslate"><span class="pre">ConfigError</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../modules/core.html#moduflow.core.exceptions.FileError"><code class="docutils literal notranslate"><span class="pre">FileError</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../modules/core.html#moduflow.core.exceptions.ModuFlowError"><code class="docutils literal notranslate"><span class="pre">ModuFlowError</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../modules/core.html#moduflow.core.exceptions.SectionError"><code class="docutils literal notranslate"><span class="pre">SectionError</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../modules/core.html#moduflow.core.exceptions.SectionNotFoundError"><code class="docutils literal notranslate"><span class="pre">SectionNotFoundError</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../modules/core.html#module-moduflow.core.paths">Paths</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../modules/core.html#moduflow.core.paths.PathManager"><code class="docutils literal notranslate"><span class="pre">PathManager</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../modules/compilers.html">Compilers Module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../modules/compilers.html#project-compiler">Project Compiler</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../modules/compilers.html#moduflow.compilers.project.ProjectCompiler"><code class="docutils literal notranslate"><span class="pre">ProjectCompiler</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../modules/compilers.html#section-compiler">Section Compiler</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../modules/compilers.html#moduflow.compilers.section.SectionCompiler"><code class="docutils literal notranslate"><span class="pre">SectionCompiler</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../modules/handlers.html">Handlers Module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../modules/handlers.html#file-handler">File Handler</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../modules/handlers.html#moduflow.handlers.file_handler.FileHandler"><code class="docutils literal notranslate"><span class="pre">FileHandler</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../modules/handlers.html#section-handler">Section Handler</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../modules/handlers.html#moduflow.handlers.section_handler.SectionHandler"><code class="docutils literal notranslate"><span class="pre">SectionHandler</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../modules/handlers.html#yaml-handler">YAML Handler</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../modules/handlers.html#moduflow.handlers.yaml_handler.YamlHandler"><code class="docutils literal notranslate"><span class="pre">YamlHandler</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../modules/prompts.html">Prompts Module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../modules/prompts.html#templates">Templates</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../modules/prompts.html#moduflow.prompts.templates.PromptGenerator"><code class="docutils literal notranslate"><span class="pre">PromptGenerator</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../modules/utils.html">Utils Module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../modules/utils.html#module-moduflow.utils.helpers">Helpers</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../modules/utils.html#moduflow.utils.helpers.camel_to_snake"><code class="docutils literal notranslate"><span class="pre">camel_to_snake()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../modules/utils.html#moduflow.utils.helpers.find_project_root"><code class="docutils literal notranslate"><span class="pre">find_project_root()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../modules/utils.html#moduflow.utils.helpers.get_terminal_width"><code class="docutils literal notranslate"><span class="pre">get_terminal_width()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../modules/utils.html#moduflow.utils.helpers.is_path_within"><code class="docutils literal notranslate"><span class="pre">is_path_within()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../modules/utils.html#moduflow.utils.helpers.list_python_modules"><code class="docutils literal notranslate"><span class="pre">list_python_modules()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../modules/utils.html#moduflow.utils.helpers.normalize_path"><code class="docutils literal notranslate"><span class="pre">normalize_path()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../modules/utils.html#moduflow.utils.helpers.run_command"><code class="docutils literal notranslate"><span class="pre">run_command()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../modules/utils.html#moduflow.utils.helpers.snake_to_camel"><code class="docutils literal notranslate"><span class="pre">snake_to_camel()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../development.html">ModuFlow Development Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../development.html#project-structure">Project Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../development.html#development-setup">Development Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../development.html#branch-strategy">Branch Strategy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../development.html#testing">Testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../development.html#code-style">Code Style</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../development.html#documentation">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../development.html#release-process">Release Process</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../development.html#adding-new-commands">Adding New Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../development.html#working-with-sections">Working with Sections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../development.html#contributing">Contributing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../testing.html">Testing ModuFlow</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../testing.html#running-tests">Running Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../testing.html#test-structure">Test Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../testing.html#writing-tests">Writing Tests</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../testing.html#example-test-structure">Example Test Structure</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../testing.html#integration-with-ci-cd">Integration with CI/CD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../testing.html#adding-more-tests">Adding More Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../testing.html#test-coverage">Test Coverage</a></li>
+</ul>
+</li>
+</ul>
 
-          <div class="body" role="main">
-            
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">ModuFlow</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">moduflow.handlers.yaml_handler</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
   <h1>Source code for moduflow.handlers.yaml_handler</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">YAML handling for ModuFlow.</span>
@@ -150,73 +350,31 @@
 
 </pre></div>
 
+           </div>
           </div>
-          
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Brian Onang&#39;o.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="Main">
-        <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="../../../index.html">ModuFlow</a></h1>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
 
-
-
-
-
-
-
-
-<h3>Navigation</h3>
-<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../usage.html">ModuFlow Usage Guide</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../modules/index.html">API Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../development.html">ModuFlow Development Guide</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../testing.html">Testing ModuFlow</a></li>
-</ul>
-
-<div class="relations">
-<h3>Related Topics</h3>
-<ul>
-  <li><a href="../../../index.html">Documentation overview</a><ul>
-  <li><a href="../../index.html">Module code</a><ul>
-  </ul></li>
-  </ul></li>
-</ul>
-</div>
-<search id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="../../../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</search>
-<script>document.getElementById('searchbox').style.display = "block"</script>
-
-
-
-
-
-
-
-
-        </div>
-      </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="footer">
-      &#169;2025, Brian Onang'o.
-      
-      |
-      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.4.7</a>
-      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
-      
-    </div>
-
-    
-
-    
-  </body>
+</body>
 </html>
