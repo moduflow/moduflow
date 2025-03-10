@@ -6,5 +6,5 @@ supporting Test-Driven Development, and organizing projects into logical
 components that can be developed and tested independently.
 """
 
-__version__ = "0.1.0"
+__version__ = "0.1.3"
 __author__ = "Brian Onang'o"
